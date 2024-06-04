@@ -57,6 +57,7 @@ header {
 
 .layer1 #search {
     display: flex;
+    align-items: center;
     padding: .3rem 1rem;
     width: 30vw;
     font-size: 1rem;
