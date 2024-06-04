@@ -18,21 +18,36 @@ const back = document.querySelector('#back');
 const lightMode = () => {
     const cards = document.querySelectorAll('.card');
 
-    header.style.backgroundColor = '';
-    header.style.boxShadow = '';
-    theme.style.backgroundColor = '';
-    theme.style.color = '';
-    body.style.backgroundColor = '';
-    body.style.color = '';
-    search.style.backgroundColor = '';
-    search.style.boxShadow = '';
-    input.style.backgroundColor = '';
-    input.style.color = '';
-    select.style.boxShadow = '';
-    select.style.backgroundColor = '';
-    select.style.color = '';
-    // back.style.backgroundColor = 'var(--lightD)';
-    // back.style.color = 'var(--secondary)';
+    if(header) {
+        header.style.backgroundColor = '';
+        header.style.boxShadow = '';
+    }
+    if(theme) {
+        theme.style.backgroundColor = '';
+        theme.style.color = '';
+    }
+    if(body) {
+        body.style.backgroundColor = '';
+        body.style.color = '';
+    }
+    if(search) {
+        search.style.backgroundColor = '';
+        search.style.boxShadow = '';
+    }
+    if(input) {
+        input.style.backgroundColor = '';
+        input.style.color = '';
+    }
+    if(select) {
+        select.style.boxShadow = '';
+        select.style.backgroundColor = '';
+        select.style.color = '';
+    }
+    if(back) {
+        back.style.backgroundColor = '';
+        back.style.color = '';
+        back.style.boxShadow = '';
+    }
     cards.forEach(card => {
         card.style.backgroundColor = '';
         card.style.boxShadow = ''
@@ -43,21 +58,36 @@ const lightMode = () => {
 const darkMode = () => {
     const cards = document.querySelectorAll('.card');
 
-    header.style.backgroundColor = 'var(--primary)';
-    header.style.boxShadow = '0 .1rem .5rem var(--secondaryD)';
-    theme.style.backgroundColor = 'var(--primary)';
-    theme.style.color = 'var(--secondary)';
-    body.style.backgroundColor = 'var(--lightD)';
-    body.style.color = 'var(--secondary)';
-    search.style.backgroundColor = 'var(--primary)';
-    search.style.boxShadow = '0 .1rem .1rem var(--secondaryD)';
-    input.style.backgroundColor = 'var(--primary)';
-    input.style.color = 'var(--secondary)';
-    select.style.boxShadow = '0 .1rem .1rem var(--secondaryD)';
-    select.style.backgroundColor = 'var(--primary)';
-    select.style.color = 'var(--secondary)';
-    // back.style.backgroundColor = 'var(--lightD)';
-    // back.style.color = 'var(--secondary)';
+    if(header) {
+        header.style.backgroundColor = 'var(--primary)';
+        header.style.boxShadow = '0 .1rem .5rem var(--secondaryD)';
+    }
+    if(theme) {
+        theme.style.backgroundColor = 'var(--primary)';
+        theme.style.color = 'var(--secondary)';
+    }
+    if(body) {
+        body.style.backgroundColor = 'var(--lightD)';
+        body.style.color = 'var(--secondary)';
+    }
+    if(search) {
+        search.style.backgroundColor = 'var(--primary)';
+        search.style.boxShadow = '0 .1rem .1rem var(--secondaryD)';
+    }
+    if(input) {
+        input.style.backgroundColor = 'var(--primary)';
+        input.style.color = 'var(--secondary)';
+    }
+    if(select) {
+        select.style.boxShadow = '0 .1rem .1rem var(--secondaryD)';
+        select.style.backgroundColor = 'var(--primary)';
+        select.style.color = 'var(--secondary)';
+    }
+    if(back) {
+        back.style.backgroundColor = 'var(--lightD)';
+        back.style.color = 'var(--secondary)';
+        back.style.boxShadow = '0 .1rem .5rem var(--secondaryD)';
+    }
     cards.forEach(card => {
         card.style.backgroundColor = 'var(--primary)';
         card.style.boxShadow = '0 .5rem .5rem var(--secondaryD)'
@@ -107,7 +137,7 @@ const selectCard = () => {
     ));
 }
 
-// this part is where start using the API
+// this part is where i start using the API
 const url = 'https://restcountries.com/v3.1/all'
 
 const getCountries = async() => {
@@ -116,75 +146,8 @@ const getCountries = async() => {
         const data = await res.json();
         
         // renders the initial data fetched, to the UI
-        card.innerHTML += data.map(data => 
-            `
-                <div class="card">
-                    <img src=${data.flags.png} alt=${data.flags.alt}>
-                    <div>
-                        <h1>${data.name.common}</h1>
-                        <p>Population: ${data.population}</p>
-                        <p>Region: ${data.continents}</p>
-                        <p>capital: ${data.capital}</p>
-                    </div>
-                </div>
-            `
-        ).join('')
-                
-        // This block checks for a change in the dropdown value before render
-        sort.addEventListener('change', (e) => {
-            const selected = e.target.value.toLowerCase()
-
-            if(selected !== 'all') {
-                const sorted = data.filter((list) => list.region.toLowerCase().includes(selected))
-
-                // clears the innerHTML before render
-                card.innerHTML = '';
-            
-                card.innerHTML += sorted.map(data => 
-                    `
-                        <div class="card">
-                            <img src=${data.flags.png} alt=${data.flags.alt}>
-                            <div>
-                                <h1>${data.name.common}</h1>
-                                <p>Population: ${data.population}</p>
-                                <p>Region: ${data.continents}</p>
-                                <p>capital: ${data.capital}</p>
-                            </div>
-                        </div>
-                    `
-                ).join('')
-            }
-            else {
-                card.innerHTML = ''
-
-                card.innerHTML += data.map(data => 
-                    `
-                        <div class="card">
-                            <img src=${data.flags.png} alt=${data.flags.alt}>
-                            <div>
-                                <h1>${data.name.common}</h1>
-                                <p>Population: ${data.population}</p>
-                                <p>Region: ${data.continents}</p>
-                                <p>capital: ${data.capital}</p>
-                            </div>
-                        </div>
-                    `
-                ).join('')
-            }
-
-            addTheme();
-            selectCard();
-        })
-
-        // This part handles the search bar input
-        input.addEventListener('input', (e) => {
-            const searchValue = e.target.value.toLowerCase().trim()
-
-            const names = data.filter(data => data.name.common.toLowerCase().includes(searchValue))
-            
-            card.innerHTML = ''
-
-            card.innerHTML += names.map(data => 
+        if(card) {
+            card.innerHTML += data.map(data => 
                 `
                     <div class="card">
                         <img src=${data.flags.png} alt=${data.flags.alt}>
@@ -197,10 +160,83 @@ const getCountries = async() => {
                     </div>
                 `
             ).join('')
+        }
+                
+        // This block checks for a change in the dropdown value before render
+        if(sort) {
+            sort.addEventListener('change', (e) => {
+                const selected = e.target.value.toLowerCase()
 
-            addTheme();
-            selectCard();
-        });
+                if(selected !== 'all') {
+                    const sorted = data.filter((list) => list.region.toLowerCase().includes(selected))
+
+                    // clears the innerHTML before render
+                    card.innerHTML = '';
+                
+                    card.innerHTML += sorted.map(data => 
+                        `
+                            <div class="card">
+                                <img src=${data.flags.png} alt=${data.flags.alt}>
+                                <div>
+                                    <h1>${data.name.common}</h1>
+                                    <p>Population: ${data.population}</p>
+                                    <p>Region: ${data.continents}</p>
+                                    <p>capital: ${data.capital}</p>
+                                </div>
+                            </div>
+                        `
+                    ).join('')
+                }
+                else {
+                    card.innerHTML = ''
+
+                    card.innerHTML += data.map(data => 
+                        `
+                            <div class="card">
+                                <img src=${data.flags.png} alt=${data.flags.alt}>
+                                <div>
+                                    <h1>${data.name.common}</h1>
+                                    <p>Population: ${data.population}</p>
+                                    <p>Region: ${data.continents}</p>
+                                    <p>capital: ${data.capital}</p>
+                                </div>
+                            </div>
+                        `
+                    ).join('')
+                }
+
+                addTheme();
+                selectCard();
+            })
+        }
+
+        // This part handles the search bar input
+        if(input) {
+            input.addEventListener('input', (e) => {
+                const searchValue = e.target.value.toLowerCase().trim()
+
+                const names = data.filter(data => data.name.common.toLowerCase().includes(searchValue))
+                
+                card.innerHTML = ''
+
+                card.innerHTML += names.map(data => 
+                    `
+                        <div class="card">
+                            <img src=${data.flags.png} alt=${data.flags.alt}>
+                            <div>
+                                <h1>${data.name.common}</h1>
+                                <p>Population: ${data.population}</p>
+                                <p>Region: ${data.continents}</p>
+                                <p>capital: ${data.capital}</p>
+                            </div>
+                        </div>
+                    `
+                ).join('')
+
+                addTheme();
+                selectCard();
+            });
+        }
 
         addTheme();
         selectCard();
