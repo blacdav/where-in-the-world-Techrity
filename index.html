@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>country details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/86cfe8c016.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header">
+                <h1>Where in the world?</h1>
+                <button id="theme">
+                    <!-- <img src="#" alt="dark logo"> -->
+                    <i class="fa-regular fa-moon"></i>
+                    <p>Dark Mode</p>
+                </button>
+            </div>
+        </header>
+
+        <section class="layer1">
+            <div id="search">
+                <!-- <img src="#" alt="search"> -->
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" value="" name="country" id="search_country" placeholder="Search for a country...">
+            </div>
+            
+            <select name="filter" id="filter">
+                <option id="all" value="All">All</option>
+                <option id="africa" value="Africa">Africa</option>
+                <option id="america" value="America">America</option>
+                <option id="asia" value="Asia">Asia</option>
+                <option id="europe" value="Europe">Europe</option>
+                <!-- <option value="North America">North America</option> -->
+                <!-- <option value="South America">South America</option> -->
+                <option id="oceania" value="Oceania">Oceania</option>
+                <!-- <option id="antarctica" value="Antarctica">Antarctica</option> -->
+            </select>
+        </section>
+
+        <section class="body">
+            <!-- <div class="card"></div> -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

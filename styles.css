@@ -1,0 +1,191 @@
+:root {
+    --primary: hsl(0, 0%, 98%);
+    --secondary: hsl(200, 15%, 8%);
+    --light: hsl(0, 0%, 52%);
+    --primaryD: hsl(209, 23%, 22%);
+    --secondaryD: hsl(209, 26%, 17%);
+    --lightD: hsl(0, 0%, 100%);
+}
+
+@font-face {
+    font-family: NunitoSans;
+    src: url(https://fonts.google.com/Nunito+Sans);
+}
+
+body {
+    /* font-family: NunitoSans; */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--secondary);
+    color: var(--primary);
+    width: 100vw;
+}
+
+header {
+    width: 100vw;
+    background-color: var(--secondaryD);
+    position: sticky;
+    top: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 90%;
+    margin: auto;
+}
+
+#theme {
+    display: flex;
+    align-items: baseline;
+    gap: .3rem;
+    background-color: var(--secondaryD);
+    color: var(--primary);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.layer1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    width: 90vw;
+    margin: 2rem auto;
+}
+
+.layer1 #search {
+    display: flex;
+    padding: .3rem 1rem;
+    width: 30vw;
+    font-size: 1rem;
+    background-color: var(--secondaryD);
+    border-radius: .3rem;
+}
+
+.layer1 #search input {
+    border: none;
+    outline: none;
+    padding: .4rem;
+    margin-left: .3rem;
+    width: 100%;
+    font-size: 1rem;
+    background-color: var(--secondaryD);
+    color: var(--lightD);
+}
+
+.layer1 select {
+    padding: .6rem 1rem;
+    width: 10vw;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    background-color: var(--secondaryD);
+    color: var(--lightD);
+}
+
+.layer1 select option {
+    padding: .6rem;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* flex-wrap: wrap; */
+    gap: 2rem;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: var(--secondaryD);
+    border-radius: 0 0 .5rem .5rem;
+    cursor: pointer;
+}
+
+.card div {
+    margin: 0 1rem;
+}
+
+.body .card img {
+    width: 100%;
+    height: 20vh;
+}
+
+aside {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    margin: 0 3rem;
+}
+
+#back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin: 3rem 5vw;
+    width: 10vw;
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    background-color: var(--secondaryD);
+    color: var(--lightD);
+}
+
+@media (max-width: 520px) {
+    body {
+        width: 100vw;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .layer1 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    .layer1 #search {
+        width: 80vw;
+    }
+
+    .layer1 select {
+        width: 50vw;
+    }
+
+    .body {
+        grid-template-columns: 1fr;
+        width: 80vw;
+        gap: 2rem;
+    }
+
+    .body .card img {
+        height: 10rem;
+    }
+
+    #back {
+        width: 30vw;
+    }
+
+    aside {
+        margin: 2rem;
+        padding: 0;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 521px) and (max-width: 1023px) {
+    .body {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
