@@ -178,7 +178,7 @@ const getCountries = async() => {
 
         // This part handles the search bar input
         input.addEventListener('input', (e) => {
-            const searchValue = e.target.value.toLowerCase()
+            const searchValue = e.target.value.toLowerCase().trim()
 
             const names = data.filter(data => data.name.common.toLowerCase().includes(searchValue))
             
