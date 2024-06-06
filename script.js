@@ -132,7 +132,7 @@ const selectCard = () => {
     cards.forEach((card, index) => (
         card.addEventListener('click', () => {
             console.log(`Button ${index} Clicked`);
-            window.location.href = 'details.html'
+            window.location.href = 'details.html';
         })
     ));
 }
