@@ -3,10 +3,6 @@ const search = document.querySelector('#search');
 const input = document.querySelector('#search_country');
 const sort = document.querySelector('#filter');
 const cflag = document.querySelector('#flag');
-// const cname = document.querySelector('#name');
-// const cpopulation = document.querySelector('#population');
-// const cregion = document.querySelector('#region');
-// const ccapital = document.querySelector('#capital');
 const card = document.querySelector('.body');
 
 const header = document.querySelector('header');
