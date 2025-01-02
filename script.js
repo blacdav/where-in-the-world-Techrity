@@ -90,20 +90,20 @@ const darkMode = () => {
     })
 }
 
-// Function to toggle the theme and save the state to localStorage
+// Function to toggle the theme and save the state to sessionStorage
 const toggleTheme = () => {
-    if (localStorage.getItem('theme') === 'dark') {
-        localStorage.setItem('theme', 'light');
+    if (sessionStorage.getItem('theme') === 'dark') {
+        sessionStorage.setItem('theme', 'light');
         lightMode();
     } else {
-        localStorage.setItem('theme', 'dark');
+        sessionStorage.setItem('theme', 'dark');
         darkMode();
     }
 }
 
 // Check the saved theme state when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'dark') {
+    if (sessionStorage.getItem('theme') === 'dark') {
         darkMode();
     } else {
         lightMode();
@@ -114,24 +114,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to apply the current theme
 const addTheme = () => {
-    if (localStorage.getItem('theme') === 'dark') {
+    if (sessionStorage.getItem('theme') === 'dark') {
         darkMode();
     } else {
         lightMode();
     }
 }
 
+// const selectCard = () => {
+//     // listens to the card for a click event, and renders the data from that particular card
+//     const cards = document.querySelectorAll('.card');
+
+//     cards.forEach((card, index) => (
+//         card.addEventListener('click', () => {
+//             console.log(`Button ${index} Clicked ${card.dataset.name}`);
+//             // window.location.href = 'details.html';
+//         })
+//     ));
+// }
+
 const selectCard = () => {
-    // listens to the card for a click event, and renders the data from that particular card
     const cards = document.querySelectorAll('.card');
 
-    cards.forEach((card, index) => (
+    cards.forEach((card) => {
         card.addEventListener('click', () => {
-            console.log(`Button ${index} Clicked`);
-            window.location.href = 'details.html';
-        })
-    ));
-}
+            // Retrieve data from the card's dataset
+            const cardData = {
+                name: card.dataset.name,
+                region: card.dataset.region,
+                capital: card.dataset.capital
+            };
+
+            console.log(`Card Data:`, cardData);
+
+            // Optional: Save the data to sessionStorage or localStorage
+            sessionStorage.setItem('selectedCountry', JSON.stringify(cardData));
+
+            // Navigate to another page
+            // window.location.href = 'details.html';
+        });
+    });
+};
+
 
 // this part is where i start using the API
 const url = 'https://restcountries.com/v3.1/all'
